@@ -1,0 +1,18 @@
+
+public class couStr{ //start with class couStr
+
+public static void main(String[] args) //main method 
+  {    
+        String str = "Hello Everyone";    //string declaration 
+        int a = 0;    
+        System.out.println("Our String is : "+str);    
+           
+        for(int i = 0; i < str.length(); i++) 
+        {    
+            if(str.charAt(i) != ' ')    
+                a++;    
+        }                
+        //show the total number of characters in the string    
+        System.out.println("Total no  of Char. in a String : " + a);    //output statement 
+    }      
+}

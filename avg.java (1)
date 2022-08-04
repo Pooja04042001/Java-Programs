@@ -1,0 +1,14 @@
+public class avg{
+    // class is avg
+public static void main(String[] args) {   
+     // main method 
+int[] num = new int[]{21, 70, 56, 37, 6, 66, 10};
+       //Sum of elements 
+       int s = 0;
+       for(int i=0; i < num.length ; i++)
+        s = s + num[i];
+       //find tha average value
+        int average = s / num.length;
+        System.out.println("Average value is : " + average); 
+   }
+}
