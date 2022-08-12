@@ -1,0 +1,10 @@
+public class hello {
+
+    public static void main(String[] args) {
+        String sentence = "H e l l o my n ame i s a P o oja.";
+        System.out.println("Original sentence: " + sentence);
+
+        sentence = sentence.replaceAll("\\s", "");
+        System.out.println("After replacement: " + sentence);
+    }
+}
