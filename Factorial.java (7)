@@ -1,0 +1,29 @@
+
+import java.util.Scanner;
+
+public class Factorial {
+
+	public static void main(String[] args) {
+		String c;
+		Scanner sc= new Scanner(System.in);
+		do {
+		System.out.println("enter the number:");
+		int num =sc.nextInt();
+		checkFactorial(num);
+		System.out.println("do you want to continue check(yes/no):");
+		c=sc.next();
+		}while(c.equals("yes"));
+		
+	}
+		static void checkFactorial(int n) {
+		 
+			int f=1;
+	        for(int i=1;i<=n;i++)
+	        {
+	            f=f*i;
+	        }
+	        System.out.println("Factorial of the number: "+f);
+
+		}
+		
+	}
