@@ -1,0 +1,186 @@
+//1st program
+
+//Shape
+
+package jp;
+public interface Shape 
+	{
+		public int area();
+	}
+  
+  
+  
+  //Square 
+  
+  package jp;
+public class Square  implements Shape
+{
+	public int length=6;
+	public int area() 
+	{		
+		int area=length*length;
+		return area;
+	}
+}
+
+//Rectangle
+
+package jp;
+public class Rectangle extends Square implements Shape
+{
+public int width=9;
+		public int area()
+	{
+		int area=length*width;
+		return area;
+	}
+	}
+  
+  
+  //Main
+  package jp;
+public class Main 
+{
+
+	public static void main(String args[])
+	{
+		Square s1=new Square();
+		s1.area();
+		System.out.println("area of  square is : "+s1.area());
+		
+		Rectangle s2=new Rectangle();
+		s2.area();
+		System.out.println("area of  rectangle is : "+s2.area());
+	}
+}
+  
+  
+  
+  //2nd Program
+ //Student class
+ 
+ package jp;
+public class Students {
+   static final private String INSTITUTE_NAME="Anudip";
+
+   private int rollno;
+   private String name;
+   private int age;
+   
+   public Students() {
+		super();
+
+	}
+
+   public Students(int rollno, String name, int age) {
+		super();
+		this.rollno = rollno;
+		this.name = name;
+		this.age = age;
+	}
+   public String getINSTITUTE_NAME() {
+		return INSTITUTE_NAME ;
+	}
+  public int getRollno() {
+	return rollno;
+}
+
+public void setRollno(int rollno) {
+	this.rollno = rollno;
+}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public int getAge() {
+	return age;
+}
+
+public void setAge(int age) {
+	this.age = age;
+}
+@Override
+public String toString() {
+	return "Student [rollno=" + rollno + ", name=" + name + ", age=" + age + "]";
+}
+   }
+
+//Main Class
+
+package jp;
+public class StudentsMain {
+	public static void main(String[] args) {
+           Student s=new Student();
+		 Student s1=new Student();
+		 Student s2=new Student();
+		 s.setRollno(23);
+		 s.setName("Pooja");
+		 s.setAge(20);
+		 
+		 s1.setRollno(23);
+		 s1.setName("pooja");
+		 s1.setAge(25);
+		
+		 s2.setRollno(22);
+		 s2.setName("Deeps");
+		 s2.setAge(26);
+      System.out.println("Details of student s");
+		  System.out.println(s.getINSTITUTE_NAME());
+			System.out.println(s.getRollno());
+			System.out.println(s.getName());
+			System.out.println(s.getAge());
+			System.out.println("Details of student s1");
+			System.out.println(s1.getINSTITUTE_NAME());
+			System.out.println(s1.getRollno());
+			System.out.println(s1.getName());
+			System.out.println(s1.getAge());
+			System.out.println("Details of student s2");
+			System.out.println(s2.getINSTITUTE_NAME());
+			System.out.println(s2.getRollno());
+			System.out.println(s2.getName());
+			System.out.println(s2.getAge());
+		
+	}
+}
+  
+  
+  
+  
+  
+  //3rd Program
+  
+package jp;
+public class Calculator {
+     public int add(int x, int y) { return (x + y); }
+     
+     public double add(double x, int y, int z)
+     {
+         return (x + y + z);
+     }
+     public String add(String x,String y) {
+    	 return (x+y);
+     }
+ public int sub(int x,int y) {
+    	 return (x-y);}
+     
+    	 public double sub(double x,double y)  {
+    		 return (x-y);
+    	 }
+       public static void main(String args[])
+     {
+         Calculator a = new Calculator();
+         System.out.println(a.add(11, 14));
+         System.out.println(a.add(5.0, 22, 88));
+         System.out.println(a.add("Pooja", "Soni"));
+         System.out.println("Done");
+         System.out.println(a.sub(9,9));
+         System.out.println(a.sub(6.0, 17.0));
+         System.out.println("Done");
+ }
+}
+  
