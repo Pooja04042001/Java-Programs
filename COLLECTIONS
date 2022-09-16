@@ -1,0 +1,271 @@
+/*
+1.WAP to create 2 ArrayLists list1 and list2 and add 3 objects of Book in each list
+ and print elements of both ArrayLists one on one line.
+*/
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class BookList  
+{
+	public static void main(String args[])
+	{
+		ContainsList();
+	}	
+	public static void ContainsList()
+	{
+       ArrayList list1=new ArrayList();
+
+		Books ob1=new Books(101,"eng","riya mam");
+		Books ob2=new Books(102,"hindi","suresh sir");
+		Books ob3=new Books(103,"maths","madhu mam");
+
+		ArrayList list2=new ArrayList();
+
+		Books ob4=new Books(104,"sci","Madhav sir");
+		Books ob5=new Books(105,"ss ","kavita mam");
+		Books ob6=new Books(106,"phy","nisha mam");
+
+		list1.add(ob1);
+		list1.add(ob2);
+		list1.add(ob3);
+
+		list2.add(ob4);
+		list2.add(ob5);
+		list2.add(ob6);
+
+		System.out.println("List1 conatining objects "+"\n");
+		Iterator it=list1.iterator();
+		while(it.hasNext())
+		{
+			System.out.println("Array list1 output: "+it.next());
+		}
+		System.out.println("\n");
+		System.out.println("List2 conatining objects "+"\n");
+		Iterator it2=list2.iterator();
+		while(it2.hasNext())
+		{
+		System.out.println("Array list2 output: "+it2.next());
+		}
+	}
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	/*
+  2. Write a Java program to create a new tree set and add above ArrayLists in TreeSet.
+    Get the number of elements in  tree set and print first and last element of treeset.
+   */
+   
+  public class Book implements Comparable<Book>
+	{
+		private int bid;
+		private String subject;
+		private String author;
+
+
+		public Book() {
+			super();
+
+		}
+
+		public Book(int bid, String subject, String author) 
+		{
+			super();
+			this.bid = bid;
+			this.subject = subject;
+			this.author = author;
+		}
+
+		public final int getBid() {
+			return bid;
+		}
+
+		public final void setBid(int bid) {
+			this.bid = bid;
+		}
+
+		public final String getSubject() {
+			return subject;
+		}
+
+		public final void setSubject(String subject) {
+			this.subject = subject;
+		}
+
+		public final String getAuthor() {
+			return author;
+		}
+
+		public final void setAuthor(String author) {
+			this.author = author;
+		}
+
+		@Override
+		public String toString() {
+			return "Books [bid=" + bid + ", subject=" + subject + ", author=" + author + "]";
+		}
+
+		@Override
+		public 	int compareTo(Book o) {
+			return this.bid-o.getBid();
+      
+	-------------------------------------------------------------------------
+  
+  import java.util.ArrayList;
+  import java.util.List;
+
+public class Booklist1 {
+ static List<Book> book1;
+ static List<Book> book2;
+  public void mylist(ArrayList p1,ArrayList p2)
+  {
+	  book1=new ArrayList<>();
+	  book2=new ArrayList<>();
+	  Book b1=new Book(1,"java","aa");
+	  Book b2=new Book(2,"c","cca");
+	  Book b3=new Book(3,"c++","rra");
+    Book b4=new Book(4,"c#","na");
+	  Book b5=new Book(5,"html","bb");
+	  Book b6=new Book(7,"python","dd");
+
+	  p1.add(b1);
+	  p1.add(b2);
+	  p1.add(b3);
+	 p2.add(b4);
+	  p2.add(b5);
+	  p2.add(b6);
+	 System.out.println("book1...");
+	  book1.forEach(b->System.out.println(b));
+	 System.out.println("book2...");
+	  book2.forEach(b->System.out.println(b));
+  }
+}
+
+---------------------------------------------------------------------------
+
+public class Books implements Comparable<Books>
+{
+	private int bid;
+	private String subject;
+	private String author;
+
+
+	public Books() {
+		super();
+
+	}
+
+	public Books(int bid, String subject, String author) 
+	{
+		super();
+		this.bid = bid;
+		this.subject = subject;
+		this.author = author;
+	}
+
+	public final int getBid() {
+		return bid;
+	}
+
+	public final void setBid(int bid) {
+		this.bid = bid;
+	}
+
+	public final String getSubject() {
+		return subject;
+	}
+
+	public final void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public final String getAuthor() {
+		return author;
+	}
+
+	public final void setAuthor(String author) {
+		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return "Books [bid=" + bid + ", subject=" + subject + ", author=" + author + "]";
+	}
+
+	@Override
+	public int compareTo(Books o) {
+		return this.author.compareTo(o.getAuthor());
+	}
+
+
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+
+/* 3. WAP to create a HashMap and add 5 student's id(101,102,103,104,105) as key and name as value.
+   Print the name of students whose id is greater than 103. */
+
+import java.util.ArrayList;
+
+import java.util.TreeSet;
+
+public class Booktree 
+{
+	void mylist()
+	{
+		TreeSet<Book> booktree=new TreeSet<>();
+		Booklist1 b1=new Booklist1();
+		ArrayList<Book> p1=new ArrayList<>();
+		ArrayList<Book> p2=new ArrayList<>();
+		b1.mylist(p1,p2);
+		booktree.addAll(p1);
+		booktree.addAll(p2);
+		booktree.forEach(b->System.out.println(b));
+		System.out.println("Number of elements:"+booktree.size());
+		System.out.println("First:"+booktree.first());
+		System.out.println("Last:"+booktree.last());
+	}
+	public static void main(String[]args) {
+		Booktree bt=new Booktree();
+		bt.mylist();
+	}
+}
+
+-------------------------------------------------------------------
+
+
+import java.util.HashMap;
+import java.util.Set;
+public class Hashmap {
+
+		public static void main(String[] args) 
+		{
+      	HashMap<Integer,String> map=new HashMap<>();
+				map.put(101, "Jyoti");
+				map.put(102, "pooja");
+				map.put(103, "neha");
+				map.put(104, "shallu");
+				map.put(105, "priya");
+				map.put(106, "nidhi");
+				System.out.println("values greater than 103 keys.....");
+				Set<Integer> keys=map.keySet();
+				for(Integer i:keys)
+				{
+					if( i.intValue()>103)
+					{
+					System.out.println(map.get(i));
+				    }
+				}
+
+			}
+
+
+	}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+COMPLETED
+
