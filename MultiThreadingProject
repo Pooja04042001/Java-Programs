@@ -1,0 +1,268 @@
+/*
+ Write a Java program to create multiple thread in Java.
+    (Print even and Odd numbers in run ())Set their name and prorities.
+*/
+
+package jp;
+public class MyThread {
+	
+	  int max;
+
+	  public MyThread(int max) {
+	    this.max = max;
+	  }
+
+	  public synchronized void even() throws InterruptedException {
+	    for (int i = 0; i <= max; i++) {
+	      notifyAll();
+	      if (i % 2 == 0)
+	        System.out.println(Thread.currentThread().getName() + ":= " + i);
+	      wait();
+	    }
+	  }
+
+	  public synchronized void odd() throws InterruptedException {
+	    for (int i = 0; i <= max; i++) {
+	      notifyAll();
+	      if (i % 2 != 0)
+	        System.out.println(Thread.currentThread().getName() + ":= " + i);
+	      wait();
+	    }
+	  }
+
+	public static void main(String[]args) {
+		
+	
+	MyThread T = new MyThread(20);
+
+	
+	Thread t1 = new Thread(new Runnable() {
+	  @Override
+	  public void run() {
+	    try {
+	      T.even();
+	    } catch (InterruptedException e) {
+	    }
+	  }
+	});
+
+	//Thread to print odd numbers
+	Thread t2 = new Thread(new Runnable() {
+	  @Override
+	  public void run() {
+	    try {
+	      T.odd();
+	    } catch (InterruptedException e) {
+	    }
+	  }
+	});
+
+	t1.setName("even Thread1");
+	t2.setName("odd Thread2");
+  
+	t1.setPriority(5);
+    t2.setPriority(10);
+  
+  System.out.println("Priority of 1st Thread " +t1.getPriority());
+  System.out.println("Priority of 2nd Thread " +t2.getPriority());
+	
+  t1.start();
+	t2.start();
+}}
+
+OUTPUT :
+
+Priority of 1st Thread 5
+Priority of 2nd Thread 10
+even Thread1:= 0
+odd Thread2:= 1
+even Thread1:= 2
+odd Thread2:= 3
+even Thread1:= 4
+odd Thread2:= 5
+even Thread1:= 6
+odd Thread2:= 7
+even Thread1:= 8
+odd Thread2:= 9
+even Thread1:= 10
+odd Thread2:= 11
+even Thread1:= 12
+odd Thread2:= 13
+even Thread1:= 14
+odd Thread2:= 15
+even Thread1:= 16
+odd Thread2:= 17
+even Thread1:= 18
+odd Thread2:= 19
+even Thread1:= 20
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+ Write a JAVA program which will generate two threads:(Use Synchronization)
+
+- To display 10 terms of Fibonacci series.
+- To display 1 to 10 in reverse order.
+
+ */
+
+package jp;
+
+class NUM extends Thread
+{
+	synchronized	 public void fiboSeries()  {
+		int n=10, a = 0, b = 0, c = 1;
+        
+        System.out.print("Fibonacci Series:");
+        for(int i = 1; i <= n; i++)
+        {
+            a = b;
+            b = c;
+            c = a + b;
+            System.out.print(a+" ");
+        }
+    }
+	
+	
+	    synchronized	 public void revNum()
+	    {
+	    	System.out.println("revers number series");
+	    	for(int i=20;i>=1;i--)
+	    		System.out.println(i);
+	    }
+}
+class Thread1 extends Thread{           // For display 10 terms of Fibonacci series.
+	NUM n;
+	public Thread1(NUM n) {
+		this.n=n;
+	}
+	public void run() {
+		n.fiboSeries();
+	}
+	
+}
+class Thread2 extends Thread{          // For display 1 to 10 in reverse order.
+	NUM n;
+	public Thread2(NUM n) {
+		this.n=n;
+	}
+	public void run() {
+		n.revNum();
+	}
+	
+}
+public class FiboRevThread {
+public static void main(String args[]) {
+	NUM o1=new NUM();
+	Thread1 th1=new Thread1(o1);
+	Thread2 th2=new Thread2(o1);
+	th1.start();
+	th2.start();
+
+}
+}
+
+OUTPUT :
+
+Fibonacci Series:0 1 1 2 3 5 8 13 21 34 revers number series
+20
+19
+18
+17
+16
+15
+14
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+ Apply InterThread Communication on demand and supply model.
+  Create a class Producer with one data member int availableProduct and 
+  two methods --demand() and supply().
+  Create two threads . In the run() of first thread call demand(int n) and 
+  In the run() of second thread call supply(int n).If deamnding number is gretaer than availableProduct
+  consumer should wait till supply increases the availableProduct.
+ */
+
+package jp;
+
+
+
+class ThreadCommunication
+{
+	int availableProduct=10;
+	synchronized public void demandMethod(int avail)
+	{
+		if(availableProduct<avail) 
+		{
+			try {
+				wait(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else
+			availableProduct-=avail;
+			System.out.println("Demand product......"+availableProduct);
+		}
+	
+	synchronized public void supplyMethod(int i)
+	{
+		availableProduct+=i;
+		System.out.println("supply product........"+availableProduct);
+
+		notify();
+	}
+}
+class MyThreadX extends Thread{
+	ThreadCommunication tc;
+	MyThreadX(ThreadCommunication tc)
+	{
+		this.tc=tc;
+	}
+	public void run()
+	{
+		tc.demandMethod(2);
+	}
+}class MyThreadY extends Thread{
+	ThreadCommunication tc;
+	MyThreadY(ThreadCommunication tc)
+	{
+		this.tc=tc;
+	}
+	public void run()
+	{
+		tc.supplyMethod(3);
+	}
+} 
+public class DemandSupply {
+
+	public static void main(String[] args) {
+		
+		ThreadCommunication tc=new ThreadCommunication();
+			MyThreadX th=new MyThreadX(tc);
+			MyThreadY th1=new MyThreadY(tc);
+			th.start();
+			th1.start();
+
+	}
+
+}
+
+OUTPUT :
+
+Demand product......8
+supply product........11
