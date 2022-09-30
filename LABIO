@@ -1,0 +1,101 @@
+1. Write a java program to read a file line by line and store it into a variable.
+
+
+package jp;
+import java.util.Scanner;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+public class Longest {
+
+	public static void main(String[] args)throws FileNotFoundException
+	{
+      new Longest().findLongestWords();
+	}
+
+	public String findLongestWords() throws FileNotFoundException
+	{
+	String longest_word = "";
+	String current;
+	
+	Scanner SC = new Scanner(new File("D:\\Pooja.txt"));
+	while (SC.hasNext())
+	{
+		current = SC.next();
+		if (current.length()> longest_word.length())
+		{
+			
+			longest_word=current;
+		}
+	}
+	System.out.println("\n"+longest_word+"\n");
+	return longest_word;
+	}
+
+}
+
+
+
+2.Write a Java program to append text to an existing file.
+
+package jp;
+
+import java.io.*;
+
+public class Append
+{
+	
+ public static void main(String[] args)
+ {
+    try
+    {
+  	 
+       FileWriter fw = new FileWriter("D:\\Pooja.txt", true);
+     
+       fw.write("\nthis is POOJA project.");
+       
+       fw.close();
+       System.out.println("DONE");
+    }
+    catch(IOException ioe)
+    {
+       System.out.print("\nSomething went wrong!");
+    }
+ }
+}
+
+
+
+3. Write a Java program to find the longest word in a text file.
+
+package jp;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+	public class LongestWord {
+		static ArrayList<String> longestWords(String[] TextFile) {
+	           ArrayList<String> list = new ArrayList<String>();
+	           int longest_length = 0;
+
+	        for (String str : TextFile) {
+	            int length = str.length();
+	            if (length > longest_length) {
+	                longest_length = length;
+	                list.clear();
+	            }
+	            if (length == longest_length) {
+	                list.add(str);
+	            }
+	        }
+	        return list;
+	    }
+
+	public static void main(String[] args) {
+			// string
+			String [] TextFile = {"mynameisPOOJA", "name", "class", "place", "am"};
+			System.out.println("Original TextFile: "+Arrays.toString(TextFile));
+			System.out.println("Longest word(s) of the above dictionary: "+longestWords(TextFile));
+	}
+
+	}
