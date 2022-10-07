@@ -1,0 +1,157 @@
+package labtest;
+
+public class Cal
+{
+
+	public static int addition(int a,int b)
+	{
+		int c=a+b;
+		return c;
+	}
+	
+	public static int substraction(int a,int b)
+	{
+		int d=a-b;
+		return d;
+	}
+}
+
+------------------------------------------
+package labtest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import junitlabtestmain.Cal;
+
+public class CalTest {
+	
+	@Test
+	public void addTest()
+	{
+		assertEquals(30,Cal.addition(10,20));
+	}
+	@Test
+	public void subTest()
+	{
+		assertEquals(10,Cal.substraction(30,20));
+	}
+}
+
+----------------------------------------------------------------------------
+package labtest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyArrayList {
+	
+	public static ArrayList<Integer> myArrayListMain() {
+		
+		ArrayList<Integer> al=new ArrayList<Integer>();
+		al.add(10);
+		al.add(20);
+		al.add(30);
+		al.add(40);
+		al.add(50);
+		
+		return al;	
+	}
+}
+--------------------------------------------------------------------------
+package labtest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import junitlabtestmain.MyArrayList;
+
+
+public class MyArrayListTest {
+
+	@Test
+	public void isEmpty()
+	{
+		assertEquals(false,MyArrayList.myArrayListMain().isEmpty());
+	}
+	@Test
+	public void sizeArrayListTest()
+	{
+		assertEquals(5,MyArrayList.myArrayListMain().size());
+	}
+	
+}
+
+---------------------------------------------------------------------------------
+
+package labtest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import junitlabtestmain.MyArrayList;
+
+
+public class MyArrayListTest {
+
+@Test
+	public void isEmpty()
+	{
+		assertEquals(false,MyArrayList.myArrayListMain().isEmpty());
+	}
+	@Test
+	public void sizeArrayListTest()
+	{
+		assertEquals(5,MyArrayList.myArrayListMain().size());
+	}
+	
+}
+
+-------------------------------------------------------------------
+package labtestmain;
+public class Palindrome {
+
+
+	public static boolean isPalindrome(String str)
+	{
+		String rev="";
+		for(int i=str.length()-1;i>=0;i--)
+		{
+		 rev=rev+str.charAt(i);
+		}
+	      if(str.equals(rev))
+			return true;
+		else 
+			return false;
+	}
+
+}
+
+
+----------------------------------------------------------------------
+
+package labtest;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import junitlabtestmain.Palindrome;
+
+public class PalindromeTest {
+
+	@DisplayName(value="Checking String palindrome")
+	@ParameterizedTest
+	@ValueSource(strings  = {"abba","edde","zazazaz","tootootoot"})
+	public void isPalindromeTest(String str)
+	{
+		assertTrue(Palindrome.isPalindrom(str));
+	}
+}
+
+
